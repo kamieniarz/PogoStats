@@ -8,6 +8,10 @@ function scanner_sql() {
     export MYSQL_PWD="${SCANNER_PASSWORD}"; mysql -h "${SCANNER_HOST}" -P "${SCANNER_PORT}" -u "${SCANNER_USER}" -D "${SCANNER_DATABASE}" -N -B -e "$1"
 }
 
+function scanner_sql2() {
+    export MYSQL_PWD="${SCANNER_PASSWORD}"; mysql -h "${SCANNER_HOST}" -P "${SCANNER_PORT}" -u "${SCANNER_USER}" -D mapa -N -B -e "$1"
+}
+
 function cleanup() {
     echo "$(date +'%F %T') | Starting Cleanup... "
     while read -r table; do
@@ -42,8 +46,8 @@ function check_tr () {
 function check_devices () {
      echo "$(date +'%F %T') | Checking device status..."
      while read -r device; do
-     	timestamps=$(scanner_sql 'SELECT UNIX_TIMESTAMP(lastProtoDateTime), currentSleepTime FROM trs_status WHERE device_id="'"$device"'"')
-        devicename=$(scanner_sql 'SELECT name FROM settings_device WHERE device_id="'"$device"'"')
+     	timestamps=$(scanner_sql2 'SELECT UNIX_TIMESTAMP(lastProtoDateTime), currentSleepTime FROM trs_status WHERE device_id="'"$device"'"')
+        devicename=$(scanner_sql2 'SELECT name FROM settings_device WHERE device_id="'"$device"'"')
 	now=$(date '+%s')
 	array=($(for i in $timestamps; do echo $i; done))
 	lastData=${array[0]}
@@ -55,7 +59,7 @@ function check_devices () {
             currentStatus="1"
         fi
         grafana_sql 'INSERT INTO device_data(timestamp, device, value) VALUES(now(),"'$devicename'","'"$currentStatus"'")'
-     done < <(scanner_sql "SELECT device_id FROM trs_status;")
+     done < <(scanner_sql2 "SELECT device_id FROM trs_status;")
 }
 
 
