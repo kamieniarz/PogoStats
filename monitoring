@@ -9,7 +9,7 @@ function scanner_sql() {
 }
 
 function scanner_sql2() {
-    export MYSQL_PWD="${SCANNER_PASSWORD}"; mysql -h "${SCANNER_HOST}" -P "${SCANNER_PORT}" -u "${SCANNER_USER}" -D mapa -N -B -e "$1"
+    export MYSQL_PWD="${SCANNER_PASSWORD}"; mysql -h "${SCANNER_HOST}" -P "${SCANNER_PORT}" -u "${SCANNER_USER}" -D "${SCANNER_DATABASE_MAD}" -N -B -e "$1"
 }
 
 function cleanup() {
