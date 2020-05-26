@@ -183,7 +183,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 14,
         "w": 12,
         "x": 12,
         "y": 0
@@ -476,7 +476,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 7,
         "w": 12,
         "x": 0,
         "y": 9
@@ -603,7 +603,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 9
+        "y": 14
       },
       "hiddenSeries": false,
       "id": 11,
@@ -743,25 +743,25 @@
         "for": "5m",
         "frequency": "1m",
         "handler": 1,
-        "name": "Unknown Spawnpoints in the last 24h alert",
+        "name": "Verified Spawnpoints",
         "noDataState": "alerting",
         "notifications": []
       },
       "aliasColors": {
-        "Unkown Spawnpoints": "dark-red"
+        "Verified Spawnpoints": "dark-red"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
       "decimals": 0,
-      "fill": 1,
+      "fill": 4,
       "fillGradient": 0,
       "gridPos": {
-        "h": 9,
+        "h": 7,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 16
       },
       "hiddenSeries": false,
       "id": 8,
@@ -769,6 +769,7 @@
         "alignAsTable": true,
         "avg": true,
         "current": true,
+        "hideZero": false,
         "max": true,
         "min": true,
         "show": true,
@@ -795,7 +796,7 @@
           "group": [],
           "metricColumn": "none",
           "rawQuery": false,
-          "rawSql": "SELECT\n  timestamp AS \"time\",\n  value AS \"Unkown Spawnpoints\"\nFROM spawnpoint_data\nWHERE\n  $__timeFilter(timestamp)\nORDER BY timestamp",
+          "rawSql": "SELECT\n  timestamp AS \"time\",\n  value AS \"Verified Spawnpoints\"\nFROM spawnpoint_data\nWHERE\n  $__timeFilter(timestamp)\nORDER BY timestamp",
           "refId": "A",
           "select": [
             [
@@ -807,7 +808,7 @@
               },
               {
                 "params": [
-                  "Unkown Spawnpoints"
+                  "Verified Spawnpoints"
                 ],
                 "type": "alias"
               }
@@ -838,7 +839,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Unknown Spawnpoints in the last 24h",
+      "title": "Verified Spawnpoints",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -855,7 +856,7 @@
       "yaxes": [
         {
           "decimals": 0,
-          "format": "short",
+          "format": "none",
           "label": "Count",
           "logBase": 1,
           "max": null,
@@ -885,7 +886,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -905,5 +906,5 @@
   "timezone": "",
   "title": "Poké Metrics",
   "uid": "wdilg2BWz",
-  "version": 4
+  "version": 2
 }
